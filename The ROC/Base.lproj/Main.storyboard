@@ -1,25 +1,130 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Leg-ng-OSj">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Scanner View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ScannerViewController" customModule="The_ROC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScannerOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Jq-s8Y">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan your ROC pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-sa-BeT">
+                                <rect key="frame" x="76" y="100" width="222" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbH-Nx-DqH">
+                                <rect key="frame" x="145" y="550" width="84" height="30"/>
+                                <state key="normal" title="I'll do it later">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scanLater:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hJu-vy-h8o"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="chj-Jq-s8Y" secondAttribute="trailing" id="FYo-gR-OP3"/>
+                            <constraint firstItem="chj-Jq-s8Y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="I3U-38-HKI"/>
+                            <constraint firstItem="d4J-sa-BeT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kxq-UO-rCy"/>
+                            <constraint firstItem="d4J-sa-BeT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="Lka-ea-R4m"/>
+                            <constraint firstItem="chj-Jq-s8Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="n9U-9E-HJC"/>
+                            <constraint firstItem="qbH-Nx-DqH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="noq-nU-i40"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="chj-Jq-s8Y" secondAttribute="bottom" id="vAW-pK-fvf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qbH-Nx-DqH" secondAttribute="bottom" constant="87" id="yjE-xJ-Te9"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="instructionLabel" destination="d4J-sa-BeT" id="X0R-K1-Pjw"/>
+                        <outlet property="laterButton" destination="qbH-Nx-DqH" id="XHw-ol-zOe"/>
+                        <outlet property="overlayImage" destination="chj-Jq-s8Y" id="qTQ-tL-mkd"/>
+                        <segue destination="Leg-ng-OSj" kind="show" identifier="doneScanning" id="obn-er-AO5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="282.5" y="336.5"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="2t7-EF-2Ya">
+            <objects>
+                <viewController id="Leg-ng-OSj" customClass="HomeViewController" customModule="The_ROC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tth-g7-4ch"/>
+                        <viewControllerLayoutGuide type="bottom" id="KHQ-7h-dgW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jPd-Ce-fiG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your barcode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE1-kW-vC2">
+                                <rect key="frame" x="134" y="87" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrr-XR-77P">
+                                <rect key="frame" x="16" y="290" width="343" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDA-7e-3db">
+                                <rect key="frame" x="139" y="579" width="96" height="30"/>
+                                <state key="normal" title="Scan Barcode"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="scanCode" id="aXZ-rr-BdP"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gLi-NZ-Krh">
+                                <rect key="frame" x="16" y="141" width="343" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="KEq-rI-bwO"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gLi-NZ-Krh" firstAttribute="leading" secondItem="jPd-Ce-fiG" secondAttribute="leadingMargin" id="5ym-IE-37Z"/>
+                            <constraint firstItem="gDA-7e-3db" firstAttribute="centerX" secondItem="jPd-Ce-fiG" secondAttribute="centerX" id="Bpk-vH-jix"/>
+                            <constraint firstItem="vrr-XR-77P" firstAttribute="top" secondItem="gLi-NZ-Krh" secondAttribute="bottom" constant="21" id="FRy-pZ-5a5"/>
+                            <constraint firstItem="vrr-XR-77P" firstAttribute="trailing" secondItem="jPd-Ce-fiG" secondAttribute="trailingMargin" id="Jwq-YC-mlY"/>
+                            <constraint firstItem="gLi-NZ-Krh" firstAttribute="trailing" secondItem="jPd-Ce-fiG" secondAttribute="trailingMargin" id="QmL-hI-D2a"/>
+                            <constraint firstItem="JE1-kW-vC2" firstAttribute="centerX" secondItem="jPd-Ce-fiG" secondAttribute="centerX" id="gVm-S2-jyj"/>
+                            <constraint firstItem="KHQ-7h-dgW" firstAttribute="top" secondItem="gDA-7e-3db" secondAttribute="bottom" constant="58" id="isJ-vh-Gf1"/>
+                            <constraint firstItem="vrr-XR-77P" firstAttribute="leading" secondItem="jPd-Ce-fiG" secondAttribute="leadingMargin" id="mB9-pZ-1ae"/>
+                            <constraint firstItem="gLi-NZ-Krh" firstAttribute="top" secondItem="JE1-kW-vC2" secondAttribute="bottom" constant="33" id="sGH-Qc-ikV"/>
+                            <constraint firstItem="JE1-kW-vC2" firstAttribute="top" secondItem="tth-g7-4ch" secondAttribute="bottom" constant="67" id="wUu-9r-Eeb"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="codeImage" destination="gLi-NZ-Krh" id="x5e-2I-CTr"/>
+                        <outlet property="codeLabel" destination="vrr-XR-77P" id="Ukr-FF-8NN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OkM-jV-jru" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-161.5" y="336.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ScannerOverlay" width="375" height="667"/>
+    </resources>
 </document>

@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		9544A2C41D6E792900BF0876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2C31D6E792900BF0876 /* AppDelegate.swift */; };
-		9544A2C61D6E792900BF0876 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2C51D6E792900BF0876 /* ViewController.swift */; };
 		9544A2C91D6E792900BF0876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9544A2C71D6E792900BF0876 /* Main.storyboard */; };
 		9544A2CB1D6E792900BF0876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9544A2CA1D6E792900BF0876 /* Assets.xcassets */; };
 		9544A2CE1D6E792900BF0876 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9544A2CC1D6E792900BF0876 /* LaunchScreen.storyboard */; };
+		9544A2D61D6E7AAE00BF0876 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2D51D6E7AAE00BF0876 /* ScannerViewController.swift */; };
+		9544A2D81D6E81D600BF0876 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2D71D6E81D600BF0876 /* HomeViewController.swift */; };
+		9544A2DA1D6F64B100BF0876 /* RSCode39Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2D91D6F64B100BF0876 /* RSCode39Generator.swift */; };
+		9544A2DC1D6F656300BF0876 /* RSCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2DB1D6F656300BF0876 /* RSCodeGenerator.swift */; };
+		9544A2DE1D6F696900BF0876 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2DD1D6F696900BF0876 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9544A2C01D6E792900BF0876 /* The ROC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The ROC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9544A2C31D6E792900BF0876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9544A2C51D6E792900BF0876 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9544A2C81D6E792900BF0876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9544A2CA1D6E792900BF0876 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9544A2CD1D6E792900BF0876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9544A2CF1D6E792900BF0876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9544A2D51D6E7AAE00BF0876 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		9544A2D71D6E81D600BF0876 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9544A2D91D6F64B100BF0876 /* RSCode39Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCode39Generator.swift; sourceTree = "<group>"; };
+		9544A2DB1D6F656300BF0876 /* RSCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCodeGenerator.swift; sourceTree = "<group>"; };
+		9544A2DD1D6F696900BF0876 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +63,15 @@
 			isa = PBXGroup;
 			children = (
 				9544A2C31D6E792900BF0876 /* AppDelegate.swift */,
-				9544A2C51D6E792900BF0876 /* ViewController.swift */,
 				9544A2C71D6E792900BF0876 /* Main.storyboard */,
 				9544A2CA1D6E792900BF0876 /* Assets.xcassets */,
 				9544A2CC1D6E792900BF0876 /* LaunchScreen.storyboard */,
 				9544A2CF1D6E792900BF0876 /* Info.plist */,
+				9544A2D51D6E7AAE00BF0876 /* ScannerViewController.swift */,
+				9544A2D71D6E81D600BF0876 /* HomeViewController.swift */,
+				9544A2D91D6F64B100BF0876 /* RSCode39Generator.swift */,
+				9544A2DB1D6F656300BF0876 /* RSCodeGenerator.swift */,
+				9544A2DD1D6F696900BF0876 /* StringExtension.swift */,
 			);
 			path = "The ROC";
 			sourceTree = "<group>";
@@ -136,8 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9544A2C61D6E792900BF0876 /* ViewController.swift in Sources */,
+				9544A2D61D6E7AAE00BF0876 /* ScannerViewController.swift in Sources */,
+				9544A2DC1D6F656300BF0876 /* RSCodeGenerator.swift in Sources */,
+				9544A2DE1D6F696900BF0876 /* StringExtension.swift in Sources */,
+				9544A2DA1D6F64B100BF0876 /* RSCode39Generator.swift in Sources */,
 				9544A2C41D6E792900BF0876 /* AppDelegate.swift in Sources */,
+				9544A2D81D6E81D600BF0876 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
