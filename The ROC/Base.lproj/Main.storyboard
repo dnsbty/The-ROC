@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b11-5J-OMC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wy7-GP-5e0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746.5" y="336.5"/>
+            <point key="canvasLocation" x="-30.5" y="828.5"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="ttX-bd-eoR">
@@ -105,12 +105,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6O-nk-2Mp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-842.5" y="-829.5"/>
+            <point key="canvasLocation" x="-30.5" y="-829.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Schedule-->
         <scene sceneID="Ddm-PE-a8f">
             <objects>
-                <navigationController id="b11-5J-OMC" sceneMemberID="viewController">
+                <navigationController title="Schedule" id="b11-5J-OMC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" id="UjA-qV-8oI"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QaI-JX-V8E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -122,7 +123,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjH-yz-8ND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350.5" y="-829.5"/>
+            <point key="canvasLocation" x="-538.5" y="-829.5"/>
         </scene>
         <!--Game Detail-->
         <scene sceneID="YyS-A2-3Hj">
@@ -257,12 +258,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2b4-vJ-18K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-842.5" y="-32.5"/>
+            <point key="canvasLocation" x="-30.5" y="-40.5"/>
         </scene>
-        <!--Show Pass-->
+        <!--ROC Pass-->
         <scene sceneID="2t7-EF-2Ya">
             <objects>
-                <viewController title="Show Pass" id="Leg-ng-OSj" customClass="HomeViewController" customModule="The_ROC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ROC Pass" id="Leg-ng-OSj" customClass="HomeViewController" customModule="The_ROC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tth-g7-4ch"/>
                         <viewControllerLayoutGuide type="bottom" id="KHQ-7h-dgW"/>
@@ -284,7 +285,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDA-7e-3db">
-                                <rect key="frame" x="139" y="579" width="96" height="30"/>
+                                <rect key="frame" x="139" y="530" width="96" height="30"/>
                                 <state key="normal" title="Scan Barcode"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="scanCode" id="aXZ-rr-BdP"/>
@@ -311,6 +312,7 @@
                             <constraint firstItem="JE1-kW-vC2" firstAttribute="top" secondItem="tth-g7-4ch" secondAttribute="bottom" constant="67" id="wUu-9r-Eeb"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="ROC Pass" id="MTH-oV-tBm"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="codeImage" destination="gLi-NZ-Krh" id="x5e-2I-CTr"/>
@@ -319,10 +321,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkM-jV-jru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276.5" y="336.5"/>
+            <point key="canvasLocation" x="-538.5" y="828.5"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="lrt-47-3o4">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Wy7-GP-5e0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="AOe-Gi-xFy">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="b11-5J-OMC" kind="relationship" relationship="viewControllers" id="bmW-CG-UTY"/>
+                        <segue destination="Leg-ng-OSj" kind="relationship" relationship="viewControllers" id="xh0-8T-LEL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRA-EF-8lA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1250" y="27"/>
         </scene>
     </scenes>
     <resources>
         <image name="ScannerOverlay" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xh0-8T-LEL"/>
+    </inferredMetricsTieBreakers>
 </document>
