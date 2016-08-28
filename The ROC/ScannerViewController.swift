@@ -14,12 +14,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession : AVCaptureSession?
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var barcodeFrameView : UIView?
+    var parentVC : HomeViewController?
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var overlayImage: UIImageView!
     
     @IBAction func scanLater(sender: AnyObject) {
+        self.parentVC?.reloadCode()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -98,7 +101,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             if metadataObj.stringValue != nil {
                 NSUserDefaults.standardUserDefaults().setObject(metadataObj.stringValue, forKey: "code")
-                self.performSegueWithIdentifier("doneScanning", sender: self)
+                print(metadataObj.stringValue)
+                self.parentVC?.reloadCode()
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }

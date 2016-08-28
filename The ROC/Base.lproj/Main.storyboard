@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScannerOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Jq-s8Y">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan your ROC pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-sa-BeT">
                                 <rect key="frame" x="76" y="100" width="222" height="33"/>
@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbH-Nx-DqH">
-                                <rect key="frame" x="145" y="550" width="84" height="30"/>
+                                <rect key="frame" x="145" y="501" width="84" height="30"/>
                                 <state key="normal" title="I'll do it later">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -53,7 +53,6 @@
                         <outlet property="instructionLabel" destination="d4J-sa-BeT" id="X0R-K1-Pjw"/>
                         <outlet property="laterButton" destination="qbH-Nx-DqH" id="XHw-ol-zOe"/>
                         <outlet property="overlayImage" destination="chj-Jq-s8Y" id="qTQ-tL-mkd"/>
-                        <segue destination="Leg-ng-OSj" kind="show" identifier="doneScanning" id="obn-er-AO5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -288,7 +287,7 @@
                                 <rect key="frame" x="139" y="530" width="96" height="30"/>
                                 <state key="normal" title="Scan Barcode"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="scanCode" id="aXZ-rr-BdP"/>
+                                    <action selector="scanCode:" destination="Leg-ng-OSj" eventType="touchUpInside" id="7fB-cZ-mVK"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gLi-NZ-Krh">
@@ -317,11 +316,71 @@
                     <connections>
                         <outlet property="codeImage" destination="gLi-NZ-Krh" id="x5e-2I-CTr"/>
                         <outlet property="codeLabel" destination="vrr-XR-77P" id="Ukr-FF-8NN"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="scanCode" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="P9R-js-Kph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkM-jV-jru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-538.5" y="828.5"/>
+        </scene>
+        <!--Fight Song-->
+        <scene sceneID="bxo-IF-Dom">
+            <objects>
+                <viewController id="PAv-bR-XPT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pgq-3w-agU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Do8-Ob-UH8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jsH-SQ-hJr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Cougar Fight Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Faz-SP-oJe">
+                                <rect key="frame" x="16" y="28" width="343" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K7v-F1-3Wv">
+                                <rect key="frame" x="16" y="63" width="343" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Rise all loyal Cougars and hurl your challenge to the foe.
+You will fight, day or night, rain or snow.
+Loyal, strong, and true
+Wear the white and blue.
+While we sing, get set to spring.
+Come on Cougars it's up to you. Oh!
+
+Rise and shout, the Cougars are out
+along the trail to fame and glory.
+Rise and shout, our cheers will ring out
+As you unfold your victr'y story.
+
+On you go to vanquish the foe for Alma Mater's sons and daughters.
+As we join in song, in praise of you, our faith is strong.
+We'll raise our colors high in the blue
+And cheer our Cougars of BYU.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Faz-SP-oJe" firstAttribute="top" secondItem="pgq-3w-agU" secondAttribute="bottom" constant="8" id="0hj-ZM-akz"/>
+                            <constraint firstItem="Faz-SP-oJe" firstAttribute="leading" secondItem="jsH-SQ-hJr" secondAttribute="leadingMargin" id="4av-z5-J6c"/>
+                            <constraint firstItem="K7v-F1-3Wv" firstAttribute="top" secondItem="Faz-SP-oJe" secondAttribute="bottom" constant="8" id="5jS-J3-P35"/>
+                            <constraint firstItem="Do8-Ob-UH8" firstAttribute="top" secondItem="K7v-F1-3Wv" secondAttribute="bottom" constant="8" id="J0Z-1I-92U"/>
+                            <constraint firstItem="K7v-F1-3Wv" firstAttribute="leading" secondItem="jsH-SQ-hJr" secondAttribute="leadingMargin" id="foB-s0-CBL"/>
+                            <constraint firstItem="K7v-F1-3Wv" firstAttribute="trailing" secondItem="jsH-SQ-hJr" secondAttribute="trailingMargin" id="l0W-K9-4id"/>
+                            <constraint firstItem="Faz-SP-oJe" firstAttribute="trailing" secondItem="jsH-SQ-hJr" secondAttribute="trailingMargin" id="uIF-oU-eGL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Fight Song" id="QxN-sv-o9y"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2iE-yz-LIv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-538.5" y="1759.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lrt-47-3o4">
@@ -341,6 +400,7 @@
                     <connections>
                         <segue destination="b11-5J-OMC" kind="relationship" relationship="viewControllers" id="bmW-CG-UTY"/>
                         <segue destination="Leg-ng-OSj" kind="relationship" relationship="viewControllers" id="xh0-8T-LEL"/>
+                        <segue destination="PAv-bR-XPT" kind="relationship" relationship="viewControllers" id="b3t-rs-EDs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRA-EF-8lA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,7 +411,4 @@
     <resources>
         <image name="ScannerOverlay" width="375" height="667"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="xh0-8T-LEL"/>
-    </inferredMetricsTieBreakers>
 </document>
