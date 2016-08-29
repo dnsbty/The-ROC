@@ -76,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				9544A2C21D6E792900BF0876 /* The ROC */,
-				950EC0511D73CD7200EDF2AC /* The-ROC.xcdatamodeld */,
 				9544A2C11D6E792900BF0876 /* Products */,
 				4BF2A2D8ECABB3B4395E2366 /* Pods */,
 				AC5E7C98CB88E0BD3FC48473 /* Frameworks */,
@@ -94,6 +93,7 @@
 		9544A2C21D6E792900BF0876 /* The ROC */ = {
 			isa = PBXGroup;
 			children = (
+				950EC0511D73CD7200EDF2AC /* The-ROC.xcdatamodeld */,
 				95DD9A761D710B7E00715C79 /* Model */,
 				95DD9A771D710B8400715C79 /* View */,
 				95DD9A781D710B8900715C79 /* Controller */,
@@ -453,7 +453,8 @@
 				950EC0521D73CD7200EDF2AC /* The-ROC.xcdatamodel */,
 			);
 			currentVersion = 950EC0521D73CD7200EDF2AC /* The-ROC.xcdatamodel */;
-			path = "The-ROC.xcdatamodeld";
+			name = "The-ROC.xcdatamodeld";
+			path = "../The-ROC.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
