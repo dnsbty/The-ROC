@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950EC0501D73CCD700EDF2AC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950EC04F1D73CCD700EDF2AC /* CoreData.framework */; };
+		950EC0531D73CD7200EDF2AC /* The-ROC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950EC0511D73CD7200EDF2AC /* The-ROC.xcdatamodeld */; };
 		9544A2C41D6E792900BF0876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2C31D6E792900BF0876 /* AppDelegate.swift */; };
 		9544A2C91D6E792900BF0876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9544A2C71D6E792900BF0876 /* Main.storyboard */; };
 		9544A2CB1D6E792900BF0876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9544A2CA1D6E792900BF0876 /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		2BA1FD329F04D59049C372BE /* Pods-The ROC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The ROC.release.xcconfig"; path = "Pods/Target Support Files/Pods-The ROC/Pods-The ROC.release.xcconfig"; sourceTree = "<group>"; };
 		3F9523BAE5ADC31A0A03932A /* Pods_The_ROC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_ROC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950EC04F1D73CCD700EDF2AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		950EC0521D73CD7200EDF2AC /* The-ROC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "The-ROC.xcdatamodel"; sourceTree = "<group>"; };
 		9544A2C01D6E792900BF0876 /* The ROC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The ROC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9544A2C31D6E792900BF0876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9544A2C81D6E792900BF0876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950EC0501D73CCD700EDF2AC /* CoreData.framework in Frameworks */,
 				AEF6F0A0CC7D60DF97ABFFBE /* Pods_The_ROC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9544A2C21D6E792900BF0876 /* The ROC */,
+				950EC0511D73CD7200EDF2AC /* The-ROC.xcdatamodeld */,
 				9544A2C11D6E792900BF0876 /* Products */,
 				4BF2A2D8ECABB3B4395E2366 /* Pods */,
 				AC5E7C98CB88E0BD3FC48473 /* Frameworks */,
@@ -142,6 +148,7 @@
 		AC5E7C98CB88E0BD3FC48473 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				950EC04F1D73CCD700EDF2AC /* CoreData.framework */,
 				3F9523BAE5ADC31A0A03932A /* Pods_The_ROC.framework */,
 			);
 			name = Frameworks;
@@ -270,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950EC0531D73CD7200EDF2AC /* The-ROC.xcdatamodeld in Sources */,
 				95DD9A851D7117A500715C79 /* ScheduledGameViewController.swift in Sources */,
 				95DD9A7B1D710C0A00715C79 /* APIRouter.swift in Sources */,
 				9544A2D61D6E7AAE00BF0876 /* ScannerViewController.swift in Sources */,
@@ -437,6 +445,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		950EC0511D73CD7200EDF2AC /* The-ROC.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				950EC0521D73CD7200EDF2AC /* The-ROC.xcdatamodel */,
+			);
+			currentVersion = 950EC0521D73CD7200EDF2AC /* The-ROC.xcdatamodel */;
+			path = "The-ROC.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9544A2B81D6E792900BF0876 /* Project object */;
 }
