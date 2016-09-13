@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class Schedule {
     
@@ -28,8 +29,48 @@ class Schedule {
         // So others must use the shared singleton.
     }
     
+    // MARK: Fetch schedule
+    func fetch(completion: () -> Void) {
+        let currentTime = NSDate()
+        let lastFetchedTime = NSUserDefaults.standardUserDefaults().objectForKey("JSONDownloadTime") as? NSDate
+        let fileManager = NSFileManager.defaultManager()
+        
+        // check if we have a JSON file that was cached in the last week
+        if (lastFetchedTime == nil || currentTime.isGreaterThanDate((lastFetchedTime?.addDays(7))!)) {
+            
+            // if not get the JSON file from the server
+            self.getFromServer({
+                jsonFilePath in
+                self.parseSchedule(jsonFilePath, completion: {
+                    completion()
+                    return
+                })
+            })
+        } else {
+            let jsonFilePath = NSUserDefaults.standardUserDefaults().objectForKey("JSONFilePath") as? String
+            
+            // if we did grab it in the last week, make sure it exists at the saved path and parse it
+            if fileManager.fileExistsAtPath(jsonFilePath!) {
+                self.parseSchedule(jsonFilePath!, completion: {
+                    completion()
+                    return
+                })
+            } else {
+                
+                // if for some reason it isn't at the path, grab it from the server
+                self.getFromServer({
+                    jsonFilePath in
+                    self.parseSchedule(jsonFilePath, completion: {
+                        completion()
+                        return
+                    })
+                })
+            }
+        }
+    }
+    
     // MARK: Get latest schedule from the server
-    func getLatest(completion: () -> Void) {
+    func getFromServer(completion: (String) -> Void) {
         Alamofire.request(APIRouter.Schedule())
             .responseJSON { response in
                 // check if the response was successful
@@ -45,15 +86,34 @@ class Schedule {
                         return
                 }
                 
-                self.parseGames(responseJSON)
+                let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
                 
-                completion()
+                let json = JSON(responseJSON)
+                let str = json.description
+                let data = str.dataUsingEncoding(NSUTF8StringEncoding)!
+                let path = documentsDirectoryPathString + "/schedule.json"
+                if let file = NSFileHandle(forWritingAtPath: path) {
+                    file.writeData(data)
+                    file.closeFile()
+                }
+                NSUserDefaults.standardUserDefaults().setObject(path, forKey: "JSONFilePath")
+                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "JSONDownloadTime")
+                
+                completion(path)
         }
     }
     
     // MARK: Helpers
-    // MARK: Parse the games
     
+    // MARK: Parse the schedule JSON file
+    private func parseSchedule(filePath: String, completion: () -> Void) {
+        let scheduleData : NSData = NSData(contentsOfFile: filePath)!
+        let json = JSON(data: scheduleData).arrayObject
+        self.parseGames(json!)
+        completion()
+    }
+    
+    // MARK: Parse the games from the schedule JSON file
     private func parseGames(games: [AnyObject]) {
         
         // clear the current games array
@@ -80,6 +140,12 @@ class Schedule {
             
             // if so create a new game object, and append it to the array
             let datetime = NSDate(timeIntervalSince1970: unixDateTime / 1000)
+            
+            // make sure that the game hasn't already occurred
+            if datetime.isLessThanDate(NSDate()) {
+                continue
+            }
+            
             self.games.append(Game(datetime: datetime, sport: Game.Sport(rawValue: sport)!, opponent: opponent, homeaway: Game.HomeAway(rawValue: homeaway)!, color: Game.Color(rawValue: color)!, venue: venue, city: city, winloss: Game.WinLoss(rawValue: winloss)!, score_byu: score_byu, score_opponent: score_opponent))
         }
     }

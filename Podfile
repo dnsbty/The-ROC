@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'The ROC' do
   pod 'Alamofire', '~> 3.4'
+  pod 'SwiftyJSON'
 end

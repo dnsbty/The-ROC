@@ -14,7 +14,7 @@ class ScheduleViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Schedule.shared.getLatest({
+        Schedule.shared.fetch({
             self.refreshTable()
         })
     }

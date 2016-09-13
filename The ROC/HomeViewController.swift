@@ -22,12 +22,10 @@ class HomeViewController : UIViewController {
     }
     
     @IBAction func scanCode(sender: AnyObject) {
-        print("Performing segue")
         self.performSegueWithIdentifier("scanCode", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("Preparing for segue")
         if segue.identifier == "scanCode" {
             if let destVC = segue.destinationViewController as? ScannerViewController {
                 destVC.parentVC = self
@@ -36,7 +34,6 @@ class HomeViewController : UIViewController {
     }
     
     func reloadCode() {
-        print("Reloading code")
         let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String
         
         if code == nil {

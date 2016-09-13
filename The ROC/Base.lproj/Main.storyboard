@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wy7-GP-5e0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wy7-GP-5e0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScannerOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Jq-s8Y">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan your ROC pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-sa-BeT">
                                 <rect key="frame" x="76" y="100" width="222" height="33"/>
@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbH-Nx-DqH">
-                                <rect key="frame" x="145" y="501" width="84" height="30"/>
+                                <rect key="frame" x="145" y="550" width="84" height="30"/>
                                 <state key="normal" title="I'll do it later">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -110,7 +110,7 @@
         <scene sceneID="Ddm-PE-a8f">
             <objects>
                 <navigationController title="Schedule" id="b11-5J-OMC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" id="UjA-qV-8oI"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="ScheduleIcon" selectedImage="ScheduleFilledIcon" id="UjA-qV-8oI"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QaI-JX-V8E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -311,7 +311,7 @@
                             <constraint firstItem="JE1-kW-vC2" firstAttribute="top" secondItem="tth-g7-4ch" secondAttribute="bottom" constant="67" id="wUu-9r-Eeb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="ROC Pass" id="MTH-oV-tBm"/>
+                    <tabBarItem key="tabBarItem" title="ROC Pass" image="BarcodeIcon" selectedImage="BarcodeIcon" id="MTH-oV-tBm"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="codeImage" destination="gLi-NZ-Krh" id="x5e-2I-CTr"/>
@@ -375,7 +375,7 @@ And cheer our Cougars of BYU.</string>
                             <constraint firstItem="Faz-SP-oJe" firstAttribute="trailing" secondItem="jsH-SQ-hJr" secondAttribute="trailingMargin" id="uIF-oU-eGL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Fight Song" id="QxN-sv-o9y"/>
+                    <tabBarItem key="tabBarItem" title="Fight Song" image="MusicNoteIcon" selectedImage="MusicNoteFilledIcon" id="QxN-sv-o9y"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iE-yz-LIv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,6 +409,11 @@ And cheer our Cougars of BYU.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="BarcodeIcon" width="30" height="30"/>
+        <image name="MusicNoteFilledIcon" width="30" height="30"/>
+        <image name="MusicNoteIcon" width="30" height="30"/>
         <image name="ScannerOverlay" width="375" height="667"/>
+        <image name="ScheduleFilledIcon" width="30" height="30"/>
+        <image name="ScheduleIcon" width="30" height="30"/>
     </resources>
 </document>

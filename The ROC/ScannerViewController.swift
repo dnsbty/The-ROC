@@ -101,7 +101,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             
             if metadataObj.stringValue != nil {
                 NSUserDefaults.standardUserDefaults().setObject(metadataObj.stringValue, forKey: "code")
-                print(metadataObj.stringValue)
                 self.parentVC?.reloadCode()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }

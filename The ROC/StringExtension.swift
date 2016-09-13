@@ -39,4 +39,11 @@ extension String {
     func isNumeric() -> Bool {
         return (self as NSString).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location == NSNotFound
     }
+    
+    func removeCharsFromEnd(count:Int) -> String{
+        let stringLength = self.length()
+        
+        let substringIndex = (stringLength < count) ? 0 : stringLength - count
+        return self.substringToIndex(self.startIndex.advancedBy(substringIndex))
+    }
 }
