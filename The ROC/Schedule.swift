@@ -37,7 +37,7 @@ class Schedule {
         
         // check if we have a JSON file that was cached in the last week
         if (lastFetchedTime == nil || currentTime.isGreaterThanDate((lastFetchedTime?.addDays(7))!)) {
-            
+            print("Wasn't cached in the last week")
             // if not get the JSON file from the server
             self.getFromServer({
                 jsonFilePath in
@@ -48,15 +48,16 @@ class Schedule {
             })
         } else {
             let jsonFilePath = NSUserDefaults.standardUserDefaults().objectForKey("JSONFilePath") as? String
-            
+            print("Was cached in the last week at \(jsonFilePath)")
             // if we did grab it in the last week, make sure it exists at the saved path and parse it
             if fileManager.fileExistsAtPath(jsonFilePath!) {
+                print("Exists at the path")
                 self.parseSchedule(jsonFilePath!, completion: {
                     completion()
                     return
                 })
             } else {
-                
+                print("Doesn't exist at the path")
                 // if for some reason it isn't at the path, grab it from the server
                 self.getFromServer({
                     jsonFilePath in
@@ -71,35 +72,21 @@ class Schedule {
     
     // MARK: Get latest schedule from the server
     func getFromServer(completion: (String) -> Void) {
-        Alamofire.request(APIRouter.Schedule())
-            .responseJSON { response in
-                // check if the response was successful
-                guard response.result.isSuccess else {
-                    print("Error while getting schedule: \(response.result.error)")
-                    return
-                }
+        var localPath: NSURL?
+        Alamofire.download(.GET,
+            APIRouter.baseURL + "/json/schedule.json",
+            destination: { (temporaryURL, response) in
+                let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+                let pathComponent = response.suggestedFilename
                 
-                // make sure response types are as expected
-                guard let responseJSON = response.result.value as? [AnyObject]
-                    else {
-                        print("Invalid information received when downloading the schedule")
-                        return
-                }
-                
-                let documentsDirectoryPathString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-                
-                let json = JSON(responseJSON)
-                let str = json.description
-                let data = str.dataUsingEncoding(NSUTF8StringEncoding)!
-                let path = documentsDirectoryPathString + "/schedule.json"
-                if let file = NSFileHandle(forWritingAtPath: path) {
-                    file.writeData(data)
-                    file.closeFile()
-                }
-                NSUserDefaults.standardUserDefaults().setObject(path, forKey: "JSONFilePath")
+                localPath = directoryURL.URLByAppendingPathComponent(pathComponent!)
+                return localPath!
+        })
+            .response { (request, response, _, error) in
+                print("File downloaded to \(localPath?.absoluteString)")
+                NSUserDefaults.standardUserDefaults().setObject(localPath?.absoluteString, forKey: "JSONFilePath")
                 NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "JSONDownloadTime")
-                
-                completion(path)
+                completion(localPath!.absoluteString)
         }
     }
     
@@ -107,9 +94,12 @@ class Schedule {
     
     // MARK: Parse the schedule JSON file
     private func parseSchedule(filePath: String, completion: () -> Void) {
-        let scheduleData : NSData = NSData(contentsOfFile: filePath)!
-        let json = JSON(data: scheduleData).arrayObject
-        self.parseGames(json!)
+        if let scheduleData = NSData(contentsOfFile: filePath) {
+            let json = JSON(data: scheduleData).arrayObject
+            self.parseGames(json!)
+        } else {
+            print("Schedule data was nil")
+        }
         completion()
     }
     

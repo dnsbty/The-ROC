@@ -15,12 +15,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var barcodeFrameView : UIView?
     var parentVC : HomeViewController?
+    var error : NSError? = nil
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var overlayImage: UIImageView!
     
     @IBAction func scanLater(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "scanLater")
         self.parentVC?.reloadCode()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -42,8 +44,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession?.addInput(input as AVCaptureInput)
         }
         catch let error as NSError {
-            // If any error occurs, simply log the description of it and don't continue any further
-            print("\(error.localizedDescription)")
+            // If any error occurs, store it for popup display and don't continue any further
+            self.error = error
             return
         }
         
@@ -75,6 +77,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         barcodeFrameView?.layer.borderWidth = 2
         view.addSubview(barcodeFrameView!)
         view.bringSubviewToFront(barcodeFrameView!)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if error != nil {
+            let alert = UIAlertController(title: error?.localizedDescription, message: error?.localizedRecoverySuggestion, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                self.scanLater(self)
+            }))
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {

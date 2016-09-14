@@ -21,6 +21,16 @@ class HomeViewController : UIViewController {
         reloadCode()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String
+        
+        if code == nil && NSUserDefaults.standardUserDefaults().objectForKey("scanLater") as? Bool != true {
+            self.performSegueWithIdentifier("scanCode", sender: self)
+            return
+        }
+    }
+    
     @IBAction func scanCode(sender: AnyObject) {
         self.performSegueWithIdentifier("scanCode", sender: self)
     }
@@ -34,13 +44,9 @@ class HomeViewController : UIViewController {
     }
     
     func reloadCode() {
-        let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String
-        
-        if code == nil {
-            self.performSegueWithIdentifier("scanCode", sender: self)
+        if let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String {
+            codeLabel.text = code
+            codeImage.image = RSCode39Generator().generateCode(code, machineReadableCodeObjectType: AVMetadataObjectTypeCode39Code)
         }
-        
-        codeLabel.text = code!
-        codeImage.image = RSCode39Generator().generateCode(code!, machineReadableCodeObjectType: AVMetadataObjectTypeCode39Code)
     }
 }
