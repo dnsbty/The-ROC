@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7Sg-FA-1zr">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller-->
+        <scene sceneID="TWn-Lr-Ffn">
+            <objects>
+                <viewController storyboardIdentifier="onboarding" id="7Sg-FA-1zr" customClass="OnboardingViewController" customModule="The_ROC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qiv-Mv-wIs"/>
+                        <viewControllerLayoutGuide type="bottom" id="may-kI-21D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gVF-uG-l38">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Vyc-2w-ySL">
+                                <rect key="frame" x="87.5" y="48" width="144" height="144"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vyc-2w-ySL" secondAttribute="height" multiplier="1:1" id="cmw-cV-VKy"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on Push Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atR-IN-3SO">
+                                <rect key="frame" x="16" y="240" width="288" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O33-0X-dsz">
+                                <rect key="frame" x="79" y="392" width="161" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Ryk-44-dEV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Enable Notifications"/>
+                                <connections>
+                                    <action selector="enableNotifications:" destination="7Sg-FA-1zr" eventType="touchUpInside" id="YKe-3v-30F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCI-7L-Ndc">
+                                <rect key="frame" x="137" y="440" width="46" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="tQA-pV-f6M"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Not Now">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="enableNotificationsLater:" destination="7Sg-FA-1zr" eventType="touchUpInside" id="CQA-pR-zp8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKX-Jr-Ofu">
+                                <rect key="frame" x="32" y="264" width="256" height="127.5"/>
+                                <string key="text">Want to be at the front of the student section at the next game?
+We'll let you know when lines open up so you can get there faster</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="atR-IN-3SO" firstAttribute="trailing" secondItem="gVF-uG-l38" secondAttribute="trailingMargin" id="2kw-xx-3Fm"/>
+                            <constraint firstItem="Vyc-2w-ySL" firstAttribute="centerX" secondItem="gVF-uG-l38" secondAttribute="centerX" id="7k9-Sx-vN6"/>
+                            <constraint firstItem="may-kI-21D" firstAttribute="top" secondItem="BCI-7L-Ndc" secondAttribute="bottom" constant="12" id="9Hz-s9-vYM"/>
+                            <constraint firstItem="BCI-7L-Ndc" firstAttribute="top" secondItem="O33-0X-dsz" secondAttribute="bottom" constant="12" id="AXF-gW-wNT"/>
+                            <constraint firstItem="O33-0X-dsz" firstAttribute="centerX" secondItem="gVF-uG-l38" secondAttribute="centerX" id="JKt-Ow-lEm"/>
+                            <constraint firstItem="atR-IN-3SO" firstAttribute="leading" secondItem="gVF-uG-l38" secondAttribute="leadingMargin" id="JpS-lq-40A"/>
+                            <constraint firstItem="BCI-7L-Ndc" firstAttribute="centerX" secondItem="gVF-uG-l38" secondAttribute="centerX" id="Q1y-DS-11c"/>
+                            <constraint firstItem="eKX-Jr-Ofu" firstAttribute="top" secondItem="atR-IN-3SO" secondAttribute="bottom" id="RaV-W2-0kz"/>
+                            <constraint firstItem="Vyc-2w-ySL" firstAttribute="bottom" secondItem="gVF-uG-l38" secondAttribute="centerY" multiplier="0.8" id="Tpy-07-NsV"/>
+                            <constraint firstItem="O33-0X-dsz" firstAttribute="top" secondItem="eKX-Jr-Ofu" secondAttribute="bottom" id="UmE-4G-aXN"/>
+                            <constraint firstItem="atR-IN-3SO" firstAttribute="top" secondItem="gVF-uG-l38" secondAttribute="centerY" id="f2M-8f-oK2"/>
+                            <constraint firstItem="Vyc-2w-ySL" firstAttribute="height" relation="lessThanOrEqual" secondItem="gVF-uG-l38" secondAttribute="height" multiplier="0.3" id="gAE-0B-YIf"/>
+                            <constraint firstItem="Vyc-2w-ySL" firstAttribute="width" relation="lessThanOrEqual" secondItem="gVF-uG-l38" secondAttribute="width" multiplier="0.6" id="hRs-5L-yEB"/>
+                            <constraint firstItem="eKX-Jr-Ofu" firstAttribute="height" secondItem="gVF-uG-l38" secondAttribute="height" multiplier="0.3" id="lBU-Yg-Rg8"/>
+                            <constraint firstItem="eKX-Jr-Ofu" firstAttribute="centerX" secondItem="gVF-uG-l38" secondAttribute="centerX" id="mrl-tz-CcJ"/>
+                            <constraint firstItem="eKX-Jr-Ofu" firstAttribute="width" secondItem="gVF-uG-l38" secondAttribute="width" multiplier="0.8" id="xft-jA-QtO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lBU-Yg-Rg8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="BYt-Ac-7Wu" kind="show" identifier="showMain" id="tP1-kT-lQX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1BR-MC-5y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286.5" y="-192.5"/>
+        </scene>
+        <!--main-->
+        <scene sceneID="q2o-fd-wIO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="main" id="BYt-Ac-7Wu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j0O-vA-ps6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="595" y="-193"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="500" height="500"/>
+    </resources>
+</document>

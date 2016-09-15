@@ -33,40 +33,23 @@ class Schedule {
     func fetch(completion: () -> Void) {
         let currentTime = NSDate()
         let lastFetchedTime = NSUserDefaults.standardUserDefaults().objectForKey("JSONDownloadTime") as? NSDate
-        let fileManager = NSFileManager.defaultManager()
         
         // check if we have a JSON file that was cached in the last week
         if (lastFetchedTime == nil || currentTime.isGreaterThanDate((lastFetchedTime?.addDays(7))!)) {
-            print("Wasn't cached in the last week")
             // if not get the JSON file from the server
             self.getFromServer({
                 jsonFilePath in
-                self.parseSchedule(jsonFilePath, completion: {
+                self.parseSchedule({
                     completion()
                     return
                 })
             })
         } else {
-            let jsonFilePath = NSUserDefaults.standardUserDefaults().objectForKey("JSONFilePath") as? String
-            print("Was cached in the last week at \(jsonFilePath)")
             // if we did grab it in the last week, make sure it exists at the saved path and parse it
-            if fileManager.fileExistsAtPath(jsonFilePath!) {
-                print("Exists at the path")
-                self.parseSchedule(jsonFilePath!, completion: {
-                    completion()
-                    return
-                })
-            } else {
-                print("Doesn't exist at the path")
-                // if for some reason it isn't at the path, grab it from the server
-                self.getFromServer({
-                    jsonFilePath in
-                    self.parseSchedule(jsonFilePath, completion: {
-                        completion()
-                        return
-                    })
-                })
-            }
+            self.parseSchedule({
+                completion()
+                return
+            })
         }
     }
     
@@ -83,8 +66,6 @@ class Schedule {
                 return localPath!
         })
             .response { (request, response, _, error) in
-                print("File downloaded to \(localPath?.absoluteString)")
-                NSUserDefaults.standardUserDefaults().setObject(localPath?.absoluteString, forKey: "JSONFilePath")
                 NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "JSONDownloadTime")
                 completion(localPath!.absoluteString)
         }
@@ -93,12 +74,15 @@ class Schedule {
     // MARK: Helpers
     
     // MARK: Parse the schedule JSON file
-    private func parseSchedule(filePath: String, completion: () -> Void) {
-        if let scheduleData = NSData(contentsOfFile: filePath) {
-            let json = JSON(data: scheduleData).arrayObject
-            self.parseGames(json!)
-        } else {
-            print("Schedule data was nil")
+    private func parseSchedule(completion: () -> Void) {
+        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent("schedule.json")
+            if let data = NSData(contentsOfURL: path) {
+                let json = JSON(data: data).arrayObject
+                self.parseGames(json!)
+            } else {
+                print("Schedule data was nil")
+            }
         }
         completion()
     }

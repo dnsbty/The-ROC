@@ -30,6 +30,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Make sure the app has permission to access the device's camera
+        if AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) == .Denied {
+            error = NSError(domain: "Camera", code: 1, userInfo: nil)
+            return
+        }
+        
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -82,12 +88,35 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        // check if there was an error while loading the view
         if error != nil {
-            let alert = UIAlertController(title: error?.localizedDescription, message: error?.localizedRecoverySuggestion, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-                self.scanLater(self)
-            }))
-            presentViewController(alert, animated: true, completion: nil)
+            
+            // if there was see if it came from the camera
+            if error!.domain == "Camera" {
+                
+                // if it did create a popup asking the user to give permission to use the camera
+                let alert = UIAlertController(
+                    title: "Permissions Error",
+                    message: "Camera access is required for scanning your ROC pass",
+                    preferredStyle: UIAlertControllerStyle.Alert
+                )
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: {
+                    (action: UIAlertAction!) in
+                    self.scanLater(self)
+                }))
+                alert.addAction(UIAlertAction(title: "Allow Camera", style: .Cancel, handler: { (alert) -> Void in
+                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                }))
+                presentViewController(alert, animated: true, completion: nil)
+            } else {
+                
+                // otherwise just use a basic popup
+                let alert = UIAlertController(title: error?.localizedDescription, message: error?.localizedRecoverySuggestion, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                    self.scanLater(self)
+                }))
+                presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
     

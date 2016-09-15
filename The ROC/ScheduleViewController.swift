@@ -13,7 +13,6 @@ class ScheduleViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Schedule.shared.fetch({
             self.refreshTable()
         })

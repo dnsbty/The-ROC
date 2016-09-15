@@ -13,9 +13,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
+            handleNotification(notification["aps"] as! [String: AnyObject])
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("onboarded") {
+            let notificationSettings = UIUserNotificationSettings(
+                forTypes: [.Badge, .Sound, .Alert], categories: nil)
+            application.registerUserNotificationSettings(notificationSettings)
+            window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        } else {
+            if let triedDate = NSUserDefaults.standardUserDefaults().objectForKey("onboardingTried") as! NSDate? {
+                if triedDate.isGreaterThanDate(NSDate().addDays(7)) {
+                    window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    return true
+                }
+            }
+            window?.rootViewController = UIStoryboard(name: "Onboarding", bundle: nil).instantiateInitialViewController()
+        }
         return true
     }
 
@@ -42,12 +60,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
     
-    // MARK: - Core Data stack
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != .None {
+            application.registerForRemoteNotifications()
+        }
+    }
     
-    lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.dennisbeatty.CDTest" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1]
-    }()
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for i in 0..<deviceToken.length {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        NSUserDefaults.standardUserDefaults().setObject(tokenString, forKey: "deviceToken")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Failed to register:", error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        handleNotification(userInfo["aps"] as! [String: AnyObject])
+    }
+    
+    func handleNotification(aps : [String: AnyObject]) {
+        if let urlString = aps["link_url"] as! String? {
+            if let url = NSURL(string: urlString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+    }
 }
 

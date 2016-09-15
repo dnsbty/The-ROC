@@ -18,6 +18,8 @@
 		9544A2DA1D6F64B100BF0876 /* RSCode39Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2D91D6F64B100BF0876 /* RSCode39Generator.swift */; };
 		9544A2DC1D6F656300BF0876 /* RSCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2DB1D6F656300BF0876 /* RSCodeGenerator.swift */; };
 		9544A2DE1D6F696900BF0876 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2DD1D6F696900BF0876 /* StringExtension.swift */; };
+		954677E61D8A573600EA13A5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954677E41D8A573600EA13A5 /* Onboarding.storyboard */; };
+		954677E81D8A673000EA13A5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954677E71D8A673000EA13A5 /* OnboardingViewController.swift */; };
 		95DD9A7B1D710C0A00715C79 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A7A1D710C0A00715C79 /* APIRouter.swift */; };
 		95DD9A7D1D710DF900715C79 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A7C1D710DF900715C79 /* Game.swift */; };
 		95DD9A7F1D710E7600715C79 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A7E1D710E7600715C79 /* Schedule.swift */; };
@@ -42,6 +44,8 @@
 		9544A2D91D6F64B100BF0876 /* RSCode39Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCode39Generator.swift; sourceTree = "<group>"; };
 		9544A2DB1D6F656300BF0876 /* RSCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCodeGenerator.swift; sourceTree = "<group>"; };
 		9544A2DD1D6F696900BF0876 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		954677E51D8A573600EA13A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		954677E71D8A673000EA13A5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		95DD9A7A1D710C0A00715C79 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		95DD9A7C1D710DF900715C79 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		95DD9A7E1D710E7600715C79 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				9544A2C71D6E792900BF0876 /* Main.storyboard */,
+				954677E41D8A573600EA13A5 /* Onboarding.storyboard */,
 				9544A2CC1D6E792900BF0876 /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -126,6 +131,7 @@
 			children = (
 				9544A2C31D6E792900BF0876 /* AppDelegate.swift */,
 				9544A2D51D6E7AAE00BF0876 /* ScannerViewController.swift */,
+				954677E71D8A673000EA13A5 /* OnboardingViewController.swift */,
 				9544A2D71D6E81D600BF0876 /* HomeViewController.swift */,
 				95DD9A7A1D710C0A00715C79 /* APIRouter.swift */,
 				95DD9A801D71160E00715C79 /* ScheduleViewController.swift */,
@@ -190,6 +196,11 @@
 					9544A2BF1D6E792900BF0876 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = QQWWMCLZJZ;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -219,6 +230,7 @@
 				9544A2CE1D6E792900BF0876 /* LaunchScreen.storyboard in Resources */,
 				9544A2CB1D6E792900BF0876 /* Assets.xcassets in Resources */,
 				9544A2C91D6E792900BF0876 /* Main.storyboard in Resources */,
+				954677E61D8A573600EA13A5 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954677E81D8A673000EA13A5 /* OnboardingViewController.swift in Sources */,
 				95DD9A851D7117A500715C79 /* ScheduledGameViewController.swift in Sources */,
 				95DD9A7B1D710C0A00715C79 /* APIRouter.swift in Sources */,
 				9544A2D61D6E7AAE00BF0876 /* ScannerViewController.swift in Sources */,
@@ -309,6 +322,14 @@
 				9544A2CD1D6E792900BF0876 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		954677E41D8A573600EA13A5 /* Onboarding.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				954677E51D8A573600EA13A5 /* Base */,
+			);
+			name = Onboarding.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -405,7 +426,7 @@
 				INFOPLIST_FILE = "The ROC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.The-ROC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.ROC-Pass";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -419,7 +440,7 @@
 				INFOPLIST_FILE = "The ROC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.The-ROC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.ROC-Pass";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

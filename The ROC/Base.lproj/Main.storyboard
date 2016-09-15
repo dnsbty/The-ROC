@@ -385,7 +385,7 @@ And cheer our Cougars of BYU.</string>
         <!--Tab Bar Controller-->
         <scene sceneID="lrt-47-3o4">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Wy7-GP-5e0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" id="Wy7-GP-5e0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="AOe-Gi-xFy">
