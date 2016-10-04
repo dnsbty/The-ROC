@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -75,6 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NSUserDefaults.standardUserDefaults().setObject(tokenString, forKey: "deviceToken")
+        Alamofire.request(APIRouter.RegisterForNotifications(tokenString))
+            .responseJSON { response in
+                // check if the response was successful
+                guard response.result.isSuccess else {
+                    print("Error while sending device token: \(response.result.error)")
+                    return
+                }
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "tokenSent")
+        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

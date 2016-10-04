@@ -12,13 +12,14 @@ import Alamofire
 public enum APIRouter: URLRequestConvertible {
     static let baseURL = "https://api.therocapp.com"
     
-    case Schedule()
+    case RegisterForNotifications(String)
     
     public var URLRequest : NSMutableURLRequest {
         let result : (path: String, method: Alamofire.Method, parameters: [String: AnyObject]?) = {
             switch self {
-            case .Schedule():
-                return("/json/schedule.json", .GET, nil)
+            case .RegisterForNotifications(let token):
+                let params = ["token": token, "type": "ios"]
+                return ("/devices/", .POST, params)
             }
         }()
         
