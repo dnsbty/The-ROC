@@ -38,7 +38,6 @@ class Schedule {
         if (lastFetchedTime == nil || currentTime.isGreaterThanDate((lastFetchedTime?.addDays(7))!)) {
             // if not get the JSON file from the server
             self.getFromServer({
-                jsonFilePath in
                 self.parseSchedule({
                     completion()
                     return
@@ -56,7 +55,6 @@ class Schedule {
     // MARK: Fetch schedule from server (and bust cache)
     func fetchFromServer(_ completion: @escaping () -> Void) {
         self.getFromServer({
-            jsonFilePath in
             self.parseSchedule({
                 completion()
                 return
@@ -65,19 +63,19 @@ class Schedule {
     }
     
     // MARK: Get latest schedule from the server
-    func getFromServer(_ completion: @escaping (String) -> Void) {
-        var localPath: URL?
+    func getFromServer(_ completion: @escaping () -> Void) {
         
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent("schedule.json")
-            localPath = fileURL
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
         Alamofire.download(Router.schedule(), to: destination).response { response in
-            UserDefaults.standard.set(NSDate(), forKey: "JSONDownloadTime")
-            completion(localPath!.absoluteString)
+            if response.error == nil {
+                UserDefaults.standard.set(NSDate(), forKey: "JSONDownloadTime")
+            }
+            completion()
         }
     }
     

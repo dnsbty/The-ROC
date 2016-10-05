@@ -17,22 +17,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // handle notification if opened from a notification
         if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String: AnyObject] {
             handleNotification(notification["aps"] as! [String: AnyObject])
         }
         
+        // check to see if the user has already finished onboarding
         if UserDefaults.standard.bool(forKey: "onboarded") {
+            
+            // if they have, check their notification settings and register them
             let notificationSettings = UIUserNotificationSettings(
                 types: [.badge, .sound, .alert], categories: nil)
             application.registerUserNotificationSettings(notificationSettings)
+            
+            // send the user to the main storyboard as normal
             window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         } else {
+            // if not check to see if they've been invited in the last seven days
             if let triedDate = UserDefaults.standard.object(forKey: "onboardingTried") as! Date? {
                 if triedDate.isGreaterThanDate(Date().addDays(7)) {
+                    
+                    // if they have go ahead and show them the normal storyboard
                     window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     return true
                 }
             }
+            
+            // otherwise send them through the onboarding process
             window?.rootViewController = UIStoryboard(name: "Onboarding", bundle: nil).instantiateInitialViewController()
         }
         return true
@@ -68,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        // create a string out of the device token
         let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
         var tokenString = ""
         
@@ -75,7 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
         
+        // save the device token to user defaults
         UserDefaults.standard.set(tokenString, forKey: "deviceToken")
+        
+        // send the device token to the server
         Alamofire.request(Router.registerForNotifications(tokenString))
             .responseJSON { response in
                 // check if the response was successful
