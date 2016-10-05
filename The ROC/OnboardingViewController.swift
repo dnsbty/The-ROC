@@ -10,16 +10,16 @@ import UIKit
 
 class OnboardingViewController : UIViewController {
     
-    @IBAction func enableNotifications(sender: AnyObject) {
+    @IBAction func enableNotifications(_ sender: AnyObject) {
         let notificationSettings = UIUserNotificationSettings(
-            forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "onboarded")
-        self.performSegueWithIdentifier("showMain", sender: self)
+            types: [.badge, .sound, .alert], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        UserDefaults.standard.set(true, forKey: "onboarded")
+        self.performSegue(withIdentifier: "showMain", sender: self)
     }
     
-    @IBAction func enableNotificationsLater(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "onboardingTriedDate")
-        self.performSegueWithIdentifier("showMain", sender: self)
+    @IBAction func enableNotificationsLater(_ sender: AnyObject) {
+        UserDefaults.standard.set(Date(), forKey: "onboardingTriedDate")
+        self.performSegue(withIdentifier: "showMain", sender: self)
     }
 }

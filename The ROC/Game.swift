@@ -12,46 +12,46 @@ class Game {
     
     // MARK: Properties
     
-    var datetime = NSDate()
-    var sport = Sport.Football
+    var datetime = Date()
+    var sport = Sport.football
     var opponent = ""
-    var homeaway = HomeAway.Home
-    var color = Color.White
+    var homeaway = HomeAway.home
+    var color = Color.white
     var venue = ""
     var city = ""
-    var winloss = WinLoss.Unplayed
+    var winloss = WinLoss.unplayed
     var score_byu = 0
     var score_opponent = 0
     
     var sportString : String {
         switch sport {
-        case Sport.Football:
+        case Sport.football:
             return "football"
-        case Sport.MensBasketball:
+        case Sport.mensBasketball:
             return "men's basketball"
-        case Sport.WomensSoccer:
+        case Sport.womensSoccer:
             return "women's soccer"
-        case Sport.WomensVolleyball:
+        case Sport.womensVolleyball:
             return "women's volleyball"
         }
     }
     
     var colorString : String {
         switch color {
-        case Color.Black:
+        case Color.black:
             return "black"
-        case Color.Navy:
+        case Color.navy:
             return "navy"
-        case Color.White:
+        case Color.white:
             return "white"
-        case Color.Royal:
+        case Color.royal:
             return "royal blue"
-        case Color.Other:
+        case Color.other:
             return "any color"
         }
     }
     
-    init(datetime: NSDate, sport: Sport, opponent: String, homeaway: HomeAway, color: Color, venue: String, city: String, winloss: WinLoss, score_byu: Int, score_opponent: Int) {
+    init(datetime: Date, sport: Sport, opponent: String, homeaway: HomeAway, color: Color, venue: String, city: String, winloss: WinLoss, score_byu: Int, score_opponent: Int) {
         self.datetime = datetime
         self.sport = sport
         self.opponent = opponent
@@ -65,18 +65,18 @@ class Game {
     }
     
     enum Sport: Int {
-        case Football = 0, MensBasketball = 1, WomensSoccer = 2, WomensVolleyball = 3
+        case football = 0, mensBasketball = 1, womensSoccer = 2, womensVolleyball = 3
     }
     
     enum HomeAway : Int {
-        case Home = 0, Away = 1
+        case home = 0, away = 1
     }
     
     enum Color : Int {
-        case White = 0, Navy = 1, Royal = 2, Black = 3, Other = 4
+        case white = 0, navy = 1, royal = 2, black = 3, other = 4
     }
     
     enum WinLoss : Int {
-        case Win = 0, Loss = 1, Tie = 2, Unplayed = 3
+        case win = 0, loss = 1, tie = 2, unplayed = 3
     }
 }

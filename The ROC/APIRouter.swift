@@ -9,27 +9,28 @@
 import Foundation
 import Alamofire
 
-public enum APIRouter: URLRequestConvertible {
-    static let baseURL = "https://api.therocapp.com"
+public enum Router : URLRequestConvertible {
+    static let baseURLString = "https://api.therocapp.com"
     
-    case RegisterForNotifications(String)
+    case registerForNotifications(String)
+    case schedule()
     
-    public var URLRequest : NSMutableURLRequest {
-        let result : (path: String, method: Alamofire.Method, parameters: [String: AnyObject]?) = {
+    public func asURLRequest() throws -> URLRequest {
+        let result: (path: String, method: HTTPMethod, parameters: Parameters?) = {
             switch self {
-            case .RegisterForNotifications(let token):
+            case let .registerForNotifications(token):
                 let params = ["token": token, "type": "ios"]
-                return ("/devices/", .POST, params)
+                return ("/devices/", .post, params)
+            case .schedule():
+                return ("/json/schedule.json", .get, nil)
             }
         }()
         
-        let URL = NSURL(string: APIRouter.baseURL)!
-        let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(result.path))
-        URLRequest.HTTPMethod = result.method.rawValue
-        URLRequest.timeoutInterval = NSTimeInterval(10 * 1000)
+        let url = try Router.baseURLString.asURL()
+        var urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
+        urlRequest.httpMethod = result.method.rawValue
+        urlRequest.timeoutInterval = TimeInterval(10 * 1000)
         
-        let encoding = Alamofire.ParameterEncoding.URL
-        
-        return encoding.encode(URLRequest, parameters: result.parameters).0
+        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
     }
 }

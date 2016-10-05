@@ -24,15 +24,15 @@ class Schedule {
         return Singleton.instance
     }
     
-    private init() {
+    fileprivate init() {
         // This guarantees that code outside this file can't instantiate a Schedule.
         // So others must use the shared singleton.
     }
     
     // MARK: Fetch schedule
-    func fetch(completion: () -> Void) {
-        let currentTime = NSDate()
-        let lastFetchedTime = NSUserDefaults.standardUserDefaults().objectForKey("JSONDownloadTime") as? NSDate
+    func fetch(_ completion: @escaping () -> Void) {
+        let currentTime = Date()
+        let lastFetchedTime = UserDefaults.standard.object(forKey: "JSONDownloadTime") as? Date
         
         // check if we have a JSON file that was cached in the last week
         if (lastFetchedTime == nil || currentTime.isGreaterThanDate((lastFetchedTime?.addDays(7))!)) {
@@ -54,32 +54,32 @@ class Schedule {
     }
     
     // MARK: Get latest schedule from the server
-    func getFromServer(completion: (String) -> Void) {
-        var localPath: NSURL?
-        Alamofire.download(.GET,
-            APIRouter.baseURL + "/json/schedule.json",
-            destination: { (temporaryURL, response) in
-                let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-                let pathComponent = response.suggestedFilename
-                
-                localPath = directoryURL.URLByAppendingPathComponent(pathComponent!)
-                return localPath!
-        })
-            .response { (request, response, _, error) in
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "JSONDownloadTime")
-                completion(localPath!.absoluteString)
+    func getFromServer(_ completion: @escaping (String) -> Void) {
+        var localPath: URL?
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("schedule.json")
+            localPath = fileURL
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        Alamofire.download(Router.schedule(), to: destination).response { response in
+            print(response)
+            UserDefaults.standard.set(NSDate(), forKey: "JSONDownloadTime")
+            completion(localPath!.absoluteString)
         }
     }
     
     // MARK: Helpers
     
     // MARK: Parse the schedule JSON file
-    private func parseSchedule(completion: () -> Void) {
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent("schedule.json")
-            if let data = NSData(contentsOfURL: path) {
+    fileprivate func parseSchedule(_ completion: () -> Void) {
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent("schedule.json")
+            if let data = try? Data(contentsOf: path) {
                 let json = JSON(data: data).arrayObject
-                self.parseGames(json!)
+                self.parseGames(json! as [AnyObject])
             } else {
                 print("Schedule data was nil")
             }
@@ -88,7 +88,7 @@ class Schedule {
     }
     
     // MARK: Parse the games from the schedule JSON file
-    private func parseGames(games: [AnyObject]) {
+    fileprivate func parseGames(_ games: [AnyObject]) {
         
         // clear the current games array
         self.games.removeAll()
@@ -98,25 +98,25 @@ class Schedule {
             
             // make sure the game has all expected fields
             guard let unixDateTime = games[index]["datetime"] as? Double,
-                sport = games[index]["sport"] as? Int,
-                opponent = games[index]["opponent"] as? String,
-                homeaway = games[index]["homeaway"] as? Int,
-                color = games[index]["color"] as? Int,
-                venue = games[index]["venue"] as? String,
-                city = games[index]["city"] as? String,
-                winloss = games[index]["winloss"] as? Int,
-                score_byu = games[index]["score_byu"] as? Int,
-                score_opponent = games[index]["score_opponent"] as? Int
+                let sport = games[index]["sport"] as? Int,
+                let opponent = games[index]["opponent"] as? String,
+                let homeaway = games[index]["homeaway"] as? Int,
+                let color = games[index]["color"] as? Int,
+                let venue = games[index]["venue"] as? String,
+                let city = games[index]["city"] as? String,
+                let winloss = games[index]["winloss"] as? Int,
+                let score_byu = games[index]["score_byu"] as? Int,
+                let score_opponent = games[index]["score_opponent"] as? Int
             else {
                     print("Invalid game information received")
                     return
             }
             
             // if so create a new game object, and append it to the array
-            let datetime = NSDate(timeIntervalSince1970: unixDateTime / 1000)
+            let datetime = Date(timeIntervalSince1970: unixDateTime / 1000)
             
             // make sure that the game hasn't already occurred
-            if datetime.isLessThanDate(NSDate()) {
+            if datetime.isLessThanDate(Date()) {
                 continue
             }
             

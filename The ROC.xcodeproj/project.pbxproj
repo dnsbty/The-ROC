@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377516A3988DC786E1F952A9 /* Pods_The_ROC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF356861F09EECC1B2B7903D /* Pods_The_ROC.framework */; };
 		950EC0501D73CCD700EDF2AC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950EC04F1D73CCD700EDF2AC /* CoreData.framework */; };
 		950EC0761D75047E00EDF2AC /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950EC0751D75047E00EDF2AC /* NSDateExtension.swift */; };
 		9544A2C41D6E792900BF0876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9544A2C31D6E792900BF0876 /* AppDelegate.swift */; };
@@ -25,12 +26,10 @@
 		95DD9A7F1D710E7600715C79 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A7E1D710E7600715C79 /* Schedule.swift */; };
 		95DD9A811D71160E00715C79 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A801D71160E00715C79 /* ScheduleViewController.swift */; };
 		95DD9A851D7117A500715C79 /* ScheduledGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD9A841D7117A500715C79 /* ScheduledGameViewController.swift */; };
-		AEF6F0A0CC7D60DF97ABFFBE /* Pods_The_ROC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9523BAE5ADC31A0A03932A /* Pods_The_ROC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2BA1FD329F04D59049C372BE /* Pods-The ROC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The ROC.release.xcconfig"; path = "Pods/Target Support Files/Pods-The ROC/Pods-The ROC.release.xcconfig"; sourceTree = "<group>"; };
-		3F9523BAE5ADC31A0A03932A /* Pods_The_ROC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_ROC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0527CED2CD73A11F8DB5691B /* Pods-The ROC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The ROC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The ROC/Pods-The ROC.debug.xcconfig"; sourceTree = "<group>"; };
 		950EC04F1D73CCD700EDF2AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		950EC0751D75047E00EDF2AC /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		9544A2C01D6E792900BF0876 /* The ROC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The ROC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +50,8 @@
 		95DD9A7E1D710E7600715C79 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		95DD9A801D71160E00715C79 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		95DD9A841D7117A500715C79 /* ScheduledGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledGameViewController.swift; sourceTree = "<group>"; };
-		BB94DFCEF61CE7E37191A8F7 /* Pods-The ROC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The ROC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The ROC/Pods-The ROC.debug.xcconfig"; sourceTree = "<group>"; };
+		AF356861F09EECC1B2B7903D /* Pods_The_ROC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_ROC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B233495DAE2CD714AB129C61 /* Pods-The ROC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The ROC.release.xcconfig"; path = "Pods/Target Support Files/Pods-The ROC/Pods-The ROC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,18 +60,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				950EC0501D73CCD700EDF2AC /* CoreData.framework in Frameworks */,
-				AEF6F0A0CC7D60DF97ABFFBE /* Pods_The_ROC.framework in Frameworks */,
+				377516A3988DC786E1F952A9 /* Pods_The_ROC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4BF2A2D8ECABB3B4395E2366 /* Pods */ = {
+		817A85C42519677DC18096B0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BB94DFCEF61CE7E37191A8F7 /* Pods-The ROC.debug.xcconfig */,
-				2BA1FD329F04D59049C372BE /* Pods-The ROC.release.xcconfig */,
+				0527CED2CD73A11F8DB5691B /* Pods-The ROC.debug.xcconfig */,
+				B233495DAE2CD714AB129C61 /* Pods-The ROC.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -81,8 +81,8 @@
 			children = (
 				9544A2C21D6E792900BF0876 /* The ROC */,
 				9544A2C11D6E792900BF0876 /* Products */,
-				4BF2A2D8ECABB3B4395E2366 /* Pods */,
 				AC5E7C98CB88E0BD3FC48473 /* Frameworks */,
+				817A85C42519677DC18096B0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				950EC04F1D73CCD700EDF2AC /* CoreData.framework */,
-				3F9523BAE5ADC31A0A03932A /* Pods_The_ROC.framework */,
+				AF356861F09EECC1B2B7903D /* Pods_The_ROC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,12 +167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9544A2D21D6E792900BF0876 /* Build configuration list for PBXNativeTarget "The ROC" */;
 			buildPhases = (
-				77C26AC7FC17D0E62DEAC891 /* Check Pods Manifest.lock */,
+				5C8900E88DFB8B98AE213317 /* [CP] Check Pods Manifest.lock */,
 				9544A2BC1D6E792900BF0876 /* Sources */,
 				9544A2BD1D6E792900BF0876 /* Frameworks */,
 				9544A2BE1D6E792900BF0876 /* Resources */,
-				DCC0E730DEB56E38897E6805 /* Embed Pods Frameworks */,
-				F3F4803C2043E5009AC36AFD /* Copy Pods Resources */,
+				93D1B33C8C3C8EB388882454 /* [CP] Embed Pods Frameworks */,
+				2392895D8245420C4509F8B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,12 +190,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Dennis Beatty";
 				TargetAttributes = {
 					9544A2BF1D6E792900BF0876 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = QQWWMCLZJZ;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -237,49 +239,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		77C26AC7FC17D0E62DEAC891 /* Check Pods Manifest.lock */ = {
+		2392895D8245420C4509F8B8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DCC0E730DEB56E38897E6805 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The ROC/Pods-The ROC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3F4803C2043E5009AC36AFD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The ROC/Pods-The ROC-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C8900E88DFB8B98AE213317 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93D1B33C8C3C8EB388882454 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The ROC/Pods-The ROC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -349,8 +351,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dennis Beatty (KA7D54F7B5)";
@@ -373,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "f9f87c7a-a0aa-487c-874d-98f84e119b0a";
@@ -396,8 +400,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dennis Beatty (QQWWMCLZJZ)";
@@ -414,40 +420,53 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "f9f87c7a-a0aa-487c-874d-98f84e119b0a";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		9544A2D31D6E792900BF0876 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB94DFCEF61CE7E37191A8F7 /* Pods-The ROC.debug.xcconfig */;
+			baseConfigurationReference = 0527CED2CD73A11F8DB5691B /* Pods-The ROC.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "The ROC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.ROC-Pass";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		9544A2D41D6E792900BF0876 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BA1FD329F04D59049C372BE /* Pods-The ROC.release.xcconfig */;
+			baseConfigurationReference = B233495DAE2CD714AB129C61 /* Pods-The ROC.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "The ROC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dennisbeatty.ROC-Pass";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

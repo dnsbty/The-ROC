@@ -24,20 +24,20 @@ class ScheduledGameViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if game.homeaway == Game.HomeAway.Home {
-            self.title = "\(game.sportString.capitalizedString) vs \(game.opponent)"
+        if game.homeaway == Game.HomeAway.home {
+            self.title = "\(game.sportString.capitalized) vs \(game.opponent)"
         } else {
-            self.title = "\(game.sportString.capitalizedString) @ \(game.opponent)"
+            self.title = "\(game.sportString.capitalized) @ \(game.opponent)"
         }
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone.local
         dateFormatter.dateFormat = "MMM d"
-        date.text = dateFormatter.stringFromDate(game.datetime)
+        date.text = dateFormatter.string(from: game.datetime as Date)
         dateFormatter.dateFormat = "h:mm a"
-        time.text = dateFormatter.stringFromDate(game.datetime)
+        time.text = dateFormatter.string(from: game.datetime as Date)
         venue.text = game.venue
         city.text = game.city
-        color.text = game.colorString.capitalizedString
+        color.text = game.colorString.capitalized
     }
 }

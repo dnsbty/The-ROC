@@ -21,30 +21,30 @@ class HomeViewController : UIViewController {
         reloadCode()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String
+        let code = UserDefaults.standard.object(forKey: "code") as? String
         
-        if code == nil && NSUserDefaults.standardUserDefaults().objectForKey("scanLater") as? Bool != true {
-            self.performSegueWithIdentifier("scanCode", sender: self)
+        if code == nil && UserDefaults.standard.object(forKey: "scanLater") as? Bool != true {
+            self.performSegue(withIdentifier: "scanCode", sender: self)
             return
         }
     }
     
-    @IBAction func scanCode(sender: AnyObject) {
-        self.performSegueWithIdentifier("scanCode", sender: self)
+    @IBAction func scanCode(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "scanCode", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "scanCode" {
-            if let destVC = segue.destinationViewController as? ScannerViewController {
+            if let destVC = segue.destination as? ScannerViewController {
                 destVC.parentVC = self
             }
         }
     }
     
     func reloadCode() {
-        if let code = NSUserDefaults.standardUserDefaults().objectForKey("code") as? String {
+        if let code = UserDefaults.standard.object(forKey: "code") as? String {
             codeLabel.text = code
             codeImage.image = RSCode39Generator().generateCode(code, machineReadableCodeObjectType: AVMetadataObjectTypeCode39Code)
         }

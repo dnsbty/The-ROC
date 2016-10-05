@@ -19,34 +19,34 @@ class ScheduleViewController : UITableViewController {
     }
     
     // MARK: Table view data source
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell")!
-        let game = Schedule.shared.games[indexPath.row] 
-        if game.homeaway == Game.HomeAway.Home {
-            cell.textLabel?.text = "\(game.sportString.capitalizedString) vs \(game.opponent)"
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell")!
+        let game = Schedule.shared.games[(indexPath as NSIndexPath).row] 
+        if game.homeaway == Game.HomeAway.home {
+            cell.textLabel?.text = "\(game.sportString.capitalized) vs \(game.opponent)"
         } else {
-            cell.textLabel?.text = "\(game.sportString.capitalizedString) @ \(game.opponent)"
+            cell.textLabel?.text = "\(game.sportString.capitalized) @ \(game.opponent)"
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Schedule.shared.games.count
     }
     
     func refreshTable() {
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
             return
         })
     }
     
     // MARK: - Segues
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Game Details" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                if let destVC = segue.destinationViewController as? ScheduledGameViewController {
-                    destVC.game = Schedule.shared.games[indexPath.row]
+                if let destVC = segue.destination as? ScheduledGameViewController {
+                    destVC.game = Schedule.shared.games[(indexPath as NSIndexPath).row]
                 }
             }
         }

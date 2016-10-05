@@ -21,23 +21,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var overlayImage: UIImageView!
     
-    @IBAction func scanLater(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "scanLater")
+    @IBAction func scanLater(_ sender: AnyObject) {
+        UserDefaults.standard.set(true, forKey: "scanLater")
         self.parentVC?.reloadCode()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Make sure the app has permission to access the device's camera
-        if AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) == .Denied {
+        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) == .denied {
             error = NSError(domain: "Camera", code: 1, userInfo: nil)
             return
         }
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter
-        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         // Get an instance of the AVCaptureDeviceInput class using the previous device object
         do {
@@ -60,7 +60,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         captureSession?.addOutput(captureMetadataOutput)
         
         // Set delegate and use the default dispatch queue to execute the callback
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeCode39Code]
         
         // Initialize the video preview layer and add it as a sublayer to the view preview view's layer
@@ -73,19 +73,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         captureSession?.startRunning()
         
         // Bring UI to the front
-        view.bringSubviewToFront(overlayImage)
-        view.bringSubviewToFront(instructionLabel)
-        view.bringSubviewToFront(laterButton)
+        view.bringSubview(toFront: overlayImage)
+        view.bringSubview(toFront: instructionLabel)
+        view.bringSubview(toFront: laterButton)
         
         // Initialize barcode frame to highlight the barcode
         barcodeFrameView = UIView()
-        barcodeFrameView?.layer.borderColor = UIColor.greenColor().CGColor
+        barcodeFrameView?.layer.borderColor = UIColor.green.cgColor
         barcodeFrameView?.layer.borderWidth = 2
         view.addSubview(barcodeFrameView!)
-        view.bringSubviewToFront(barcodeFrameView!)
+        view.bringSubview(toFront: barcodeFrameView!)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // check if there was an error while loading the view
@@ -98,24 +98,24 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 let alert = UIAlertController(
                     title: "Permissions Error",
                     message: "Camera access is required for scanning your ROC pass",
-                    preferredStyle: UIAlertControllerStyle.Alert
+                    preferredStyle: UIAlertControllerStyle.alert
                 )
-                alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: {
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
                     (action: UIAlertAction!) in
                     self.scanLater(self)
                 }))
-                alert.addAction(UIAlertAction(title: "Allow Camera", style: .Cancel, handler: { (alert) -> Void in
-                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                alert.addAction(UIAlertAction(title: "Allow Camera", style: .cancel, handler: { (alert) -> Void in
+                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
                 }))
-                presentViewController(alert, animated: true, completion: nil)
+                present(alert, animated: true, completion: nil)
             } else {
                 
                 // otherwise just use a basic popup
-                let alert = UIAlertController(title: error?.localizedDescription, message: error?.localizedRecoverySuggestion, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                let alert = UIAlertController(title: error?.localizedDescription, message: error?.localizedRecoverySuggestion, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                     self.scanLater(self)
                 }))
-                presentViewController(alert, animated: true, completion: nil)
+                present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -125,11 +125,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         // Dispose of any resources that can be recreated.
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object
         if metadataObjects == nil || metadataObjects.count == 0 {
-            barcodeFrameView?.frame = CGRectZero
+            barcodeFrameView?.frame = CGRect.zero
             return
         }
         
@@ -139,18 +139,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if metadataObj.type == AVMetadataObjectTypeCode39Code {
             captureSession?.stopRunning()
             // If the found metadata is equal to the Code-39 barcode metadata set the bounds
-            let barcodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+            let barcodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
             barcodeFrameView?.frame = barcodeObject.bounds
             
             if metadataObj.stringValue != nil {
-                NSUserDefaults.standardUserDefaults().setObject(metadataObj.stringValue, forKey: "code")
+                UserDefaults.standard.set(metadataObj.stringValue, forKey: "code")
                 self.parentVC?.reloadCode()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 }
