@@ -65,7 +65,6 @@ class Schedule {
         }
         
         Alamofire.download(Router.schedule(), to: destination).response { response in
-            print(response)
             UserDefaults.standard.set(NSDate(), forKey: "JSONDownloadTime")
             completion(localPath!.absoluteString)
         }
