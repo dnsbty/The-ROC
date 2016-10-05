@@ -18,6 +18,13 @@ class ScheduleViewController : UITableViewController {
         })
     }
     
+    // MARK: Refresh table view
+    @IBAction func refresh(_ sender: AnyObject) {
+        Schedule.shared.fetchFromServer {
+            self.refreshTable()
+        }
+    }
+    
     // MARK: Table view data source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell")!

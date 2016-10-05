@@ -53,6 +53,17 @@ class Schedule {
         }
     }
     
+    // MARK: Fetch schedule from server (and bust cache)
+    func fetchFromServer(_ completion: @escaping () -> Void) {
+        self.getFromServer({
+            jsonFilePath in
+            self.parseSchedule({
+                completion()
+                return
+            })
+        })
+    }
+    
     // MARK: Get latest schedule from the server
     func getFromServer(_ completion: @escaping (String) -> Void) {
         var localPath: URL?
